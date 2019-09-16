@@ -2,23 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.css' rel='stylesheet' />
+    <!-- <style>
+    body { margin:0; padding:0; }
+    #map { position:absolute; top:200px; bottom:0; width:300px; }
+    </style> -->
 </head>
 <body>
     <header>
         <h1>Geo Trivia</h1>
     </header>
+    <div id='map' style="width: 900px;height: 500px;"></div>
+    <script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoiY2hyaXNrY2FyciIsImEiOiJjazBtemZ2eWIwMmFwM3JvN3VmeGF0bW0xIn0.v3IKMVaeVC0dhfyYV_QAPQ';
+    var map = new mapboxgl.Map({
+        container: 'map', // container id
+        style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
+        center: [-74.50, 40], // starting position [lng, lat]
+        zoom: 9 // starting zoom
+    });
+    </script>
+    <!-- <div class="scoreChart">
+        <ul class="scores"></ul>
+    </div> -->
     <!-- <div class="choices">
         <button id="option1">1</button>
         <button id="option2">2</button>
         <button id="option3">3</button>
         <button id="option4">4</button>
     </div> -->
-    <div>
-        <p>MAP GOES HERE</p>
+    <div class="scorebox">
+        <div>score: 0000</div>
     </div>
     <div class="questions">
         <p>Click on the location of X country.</p>
