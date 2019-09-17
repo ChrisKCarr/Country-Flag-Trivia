@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <!-- <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"> -->
+    <title>Country Flag Quiz</title>
     <link rel="stylesheet" href="style.css">
     
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.css' rel='stylesheet' />
+    <!-- <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.css' rel='stylesheet' /> -->
     <!-- <style>
     body { margin:0; padding:0; }
     #map { position:absolute; top:200px; bottom:0; width:300px; }
@@ -17,14 +17,14 @@
 <body>
     <header>
         <button id="start">START</button>
-        <h1>Geo Trivia</h1>
+        <h1>Flag Trivia</h1>
         <div class="scorebox">
             <div>score: 0000</div>
         </div>
     </header>
     
-    <div id='map'></div>
-    <script>
+    <!-- <div id='map'></div> -->
+    <!-- <script>
     mapboxgl.accessToken = 'pk.eyJ1IjoiY2hyaXNrY2FyciIsImEiOiJjazBtemZ2eWIwMmFwM3JvN3VmeGF0bW0xIn0.v3IKMVaeVC0dhfyYV_QAPQ';
     var map = new mapboxgl.Map({
         container: 'map', // container id
@@ -32,18 +32,19 @@
         center: [0, 30], // starting position [lng, lat]
         zoom: 1 // starting zoom
     });
-    </script>
+    </script> -->
+
     <!-- <div class="scoreChart">
         <ul class="scores"></ul>
     </div> -->
-    <!-- <div class="choices">
-        <button id="option1">1</button>
-        <button id="option2">2</button>
-        <button id="option3">3</button>
-        <button id="option4">4</button>
-    </div> -->
+    <div class="choices">
+        <button class="box option1">1</button>
+        <button class="box option2">2</button>
+        <button class="box option3">3</button>
+        <button class="box option4">4</button>
+    </div>
     <div class="questions">
-        <p>Click on the location of X country.</p>
+        <p>Which is the flag of X country.</p>
     </div>
     <!-- <button id="start">START</button> -->
     <script src="script.js"></script>

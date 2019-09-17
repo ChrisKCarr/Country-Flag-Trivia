@@ -3,18 +3,28 @@ header {
     text-align: center;
 }
 
-#map {
+/* #map {
     display: block;
     margin-left: auto;
     margin-right: auto;
     width: 700px;
     height: 500px;
-}
+} */
 .scorebox {
     position: absolute;
     top: 8px;
     right: 16px;
     font-size: 18px;
+}
+.choices {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+}
+.box {
+    height: 300px;
+    margin: 5px;
+    width: 100%;
 }
 .questions {
     border: 2px dashed gray;
@@ -32,7 +42,7 @@ header {
     width: 90px;
     border-radius: 999px;
 }
-#start:hover {
+#start:active {
     animation: burn 1000ms ease-out forwards;
 }
 #start::before {
