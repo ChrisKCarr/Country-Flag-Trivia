@@ -1,5 +1,9 @@
 const countriesList = [];
 const countryChoices = [];
+let score = 0;
+let turn = 0;
+const button = document.querySelectorAll(".box");
+const flagButtonPatrent = document.querySelector(".choices");
 
 fetch('https://restcountries.eu/rest/v2/all')
     .then(res => res.json())
@@ -21,13 +25,13 @@ function filterCountryArray(res) {
 
 //Picks a random country and displays that in the questions innerText -- Picks an addition 3 random countries from the countriesList and pushes them into a "choices" array -- each choice box innerHtml is replaced with the choices flag urls.
 function pickRandomCountries() {
-    const targetCountry = countriesList[Math.floor(Math.random()*countriesList.length)];
+    let targetCountry = countriesList[Math.floor(Math.random()*countriesList.length)];
     countryChoices.push(targetCountry);
     for(let i=0; i<3;i++) {countryChoices.push(countriesList[Math.floor(Math.random()*countriesList.length)])};
     // console.log(countryChoices);  -- Works, answer is always at 0 index, 1-3 index are random countrys.
     changeQuestion(targetCountry);
-    setFlags(countryChoices);
-
+    setFlags(countryChoices, targetCountry);
+    
 }
 //Grab question element from doc -- change innerText to match the random countries name. -- return the element.
 function changeQuestion(pickedCountry) {
@@ -36,10 +40,27 @@ function changeQuestion(pickedCountry) {
     return questionEle;
 }
 //Takes array of choices, changes each button background to display that countries flag from its flag:url -- 
-function setFlags(countryChoices) {
+function setFlags(countryChoices, targetCountry) {
     const shuffledPicks = shuffle(countryChoices);
     // console.log(shuffledPicks); -- Works
-    
+    for (let index = 0; index < shuffledPicks.length; index++) {
+        if(shuffledPicks[index] === targetCountry) {
+            console.log('corrext country: ', targetCountry, ' at index: '+index);
+            button[index].style.backgroundImage = `url(${shuffledPicks[index].flag})`;
+            button[index].style.backgroundSize = '100% 100%';
+            button[index].style.backgroundRepeat = `no-repeat`;
+            button[index].name = 'correct';
+        } else {
+            console.log(button[index], shuffledPicks[index].flag);
+            button[index].style.backgroundImage = `url(${shuffledPicks[index].flag})`;
+            button[index].style.backgroundSize = '100% 100%';
+            button[index].style.backgroundRepeat = `no-repeat`;
+        }
+        // console.log(button[index], shuffledPicks[index].flag);
+        // button[index].style.backgroundImage = `url(${shuffledPicks[index].flag})`;
+        // button[index].style.backgroundSize = '100% 100%';
+        // button[index].style.backgroundRepeat = `no-repeat`;
+    }  
 }
 //Fisher-Yates Shuffle
 function shuffle(array) {
@@ -56,7 +77,55 @@ function shuffle(array) {
     }
     return array;
 }
-  
-//TESTS
-// console.log(countriesList[44]);
+
+//Score -- adds 1 point each correct answer - sum starts at 0 - grabs element for score - changes innerText to display current score number - 
+function addScore() {
+    score += 1;
+    const scoreEle = document.querySelector(".score");
+    scoreEle.innerText = `score: ${score}`;
+    return scoreEle;
+};
+//tracks the games amount of turns -- starts at 0 -- stops game at 10;
+function logTurn() {
+    turn++;
+    if(turn === 10) {
+        stopGame();
+    } else {
+        clearBoard();
+    }
+};
+//Once game is at 10 turns return alert of users score -- 
+function stopGame() {
+    // flagButtonPatrent.removeEventListener('click', function(evt) {console.log('over')});
+    alert(`Your final score is ${score}`);
+    return location.reload();
+}
+//after each turn, board is cleared and setFlag is rerun -- first for loop through flag holding elements, -- if/else to check for element with name = correct, clear it. -- clear background for all elements. -- run setFlag function again after for loop.
+function clearBoard() {
+    const grabbedFlags = document.querySelectorAll(".box");
+    for (let index = 0; index < grabbedFlags.length; index++) {
+        countryChoices.pop();
+        if(grabbedFlags[index].name === 'correct') {
+            grabbedFlags[index].name = "x";
+            grabbedFlags[index].style.backgroundImage = 'url(none)';
+        } else {
+            grabbedFlags[index].style.backgroundImage = 'url(none)';
+        }
+    }
+    pickRandomCountries();
+};
+//EVENTS
+flagButtonPatrent.addEventListener('click', function(event) {
+    event.preventDefault();
+
+    if(event.target.name == 'correct') {
+        console.log('correct');
+        addScore();
+        logTurn();
+    } else {
+        alert('WRONG');
+        logTurn();
+    }
+})
+
 

@@ -20,12 +20,21 @@ header {
     display: grid;
     grid-template-columns: 1fr 1fr;
     width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background: black;
 }
 .box {
-    height: 300px;
+    height: 500px;
     margin: 5px;
-    width: 100%;
+    width: 99%;
 }
+.box:hover {
+	background: rgba(214, 212, 212, 0.253);
+	border-bottom: 1px solid rgba(199, 195, 195, 0.377);
+	border-top: 1px solid;
+}
+
 .questions {
     border: 2px dashed gray;
     height: 10em;
