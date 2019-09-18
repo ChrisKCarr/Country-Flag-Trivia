@@ -16,13 +16,22 @@
 </head>
 <body>
     <header>
-        <button id="start">START</button>
+        <!-- onclick="customGameOptions() --> 
+        <button id="customizeGame">CUSTOM GAME</button>
+        <div class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p>Customization options coming soon..</p>
+            </div>
+        </div>
         <h1>Flag Trivia</h1>
         <div class="scorebox">
             <div class="score">score: 0</div>
         </div>
     </header>
-    
+    <div class="questions">
+            <p class="qP">Which is the flag of X country.</p>
+    </div>
     <!-- <div id='map'></div> -->
     <!-- <script>
     mapboxgl.accessToken = 'pk.eyJ1IjoiY2hyaXNrY2FyciIsImEiOiJjazBtemZ2eWIwMmFwM3JvN3VmeGF0bW0xIn0.v3IKMVaeVC0dhfyYV_QAPQ';
@@ -42,9 +51,6 @@
         <button class="box option2"></button>
         <button class="box option3"></button>
         <button class="box option4"></button>
-    </div>
-    <div class="questions">
-        <p>Which is the flag of X country.</p>
     </div>
     <!-- <button id="start">START</button> -->
     <script src="script.js"></script>

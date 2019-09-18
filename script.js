@@ -4,7 +4,11 @@ let score = 0;
 let turn = 0;
 const button = document.querySelectorAll(".box");
 const flagButtonPatrent = document.querySelector(".choices");
-
+//Modal Options -
+const modal = document.querySelector('.modal');
+const customizeButton = document.querySelector('#customizeGame');
+const close = document.getElementsByClassName("close")[0];
+//----------------------------------------------------//----------------------------------------------------//----------------------------------------------------//----------------------------------------------------
 fetch('https://restcountries.eu/rest/v2/all')
     .then(res => res.json())
     .then(res => {
@@ -14,7 +18,7 @@ fetch('https://restcountries.eu/rest/v2/all')
         pickRandomCountries();
     })
     .catch(err => console.log("something went wrong ;/", err));
-
+//----------------------------------------------------//----------------------------------------------------//----------------------------------------------------//----------------------------------------------------
 //Filters rest countries API by name and flag url. -- Take array of countries -- forEach country, take the country name and flag and place into an object array -- return the array containing just the name and flag of each country. 
 function filterCountryArray(res) {
     res.forEach(country => {
@@ -35,7 +39,7 @@ function pickRandomCountries() {
 }
 //Grab question element from doc -- change innerText to match the random countries name. -- return the element.
 function changeQuestion(pickedCountry) {
-    const questionEle = document.querySelector('.questions');
+    const questionEle = document.querySelector('.qP');
     questionEle.innerText = `Which is the flag for ${pickedCountry.name}`;
     return questionEle;
 }
@@ -56,10 +60,6 @@ function setFlags(countryChoices, targetCountry) {
             button[index].style.backgroundSize = '100% 100%';
             button[index].style.backgroundRepeat = `no-repeat`;
         }
-        // console.log(button[index], shuffledPicks[index].flag);
-        // button[index].style.backgroundImage = `url(${shuffledPicks[index].flag})`;
-        // button[index].style.backgroundSize = '100% 100%';
-        // button[index].style.backgroundRepeat = `no-repeat`;
     }  
 }
 //Fisher-Yates Shuffle
@@ -78,7 +78,7 @@ function shuffle(array) {
     return array;
 }
 
-//Score -- adds 1 point each correct answer - sum starts at 0 - grabs element for score - changes innerText to display current score number - 
+//Score -- adds 1 point each correct answer - sum starts at 0 - grabs element for score - changes innerText to display current score number -
 function addScore() {
     score += 1;
     const scoreEle = document.querySelector(".score");
@@ -114,7 +114,7 @@ function clearBoard() {
     }
     pickRandomCountries();
 };
-//EVENTS
+//EVENTS//----------------------------------------------------//----------------------------------------------------//----------------------------------------------------//----------------------------------------------------
 flagButtonPatrent.addEventListener('click', function(event) {
     event.preventDefault();
 
@@ -127,5 +127,16 @@ flagButtonPatrent.addEventListener('click', function(event) {
         logTurn();
     }
 })
-
-
+//Modual Events
+customizeButton.onclick = function() {
+    modal.style.display = "block";
+}
+close.onclick = function() {
+    modal.style.display = "none";
+}
+//closes when clicked anbywhere outside of modual
+window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+}

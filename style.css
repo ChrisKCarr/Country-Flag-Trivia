@@ -12,9 +12,46 @@ header {
 } */
 .scorebox {
     position: absolute;
+    font:500 40px/2 "Raleway", sans-serif;
     top: 8px;
     right: 16px;
-    font-size: 18px;
+    /* font-size: 18px; */
+}
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+  
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+  
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
 }
 .choices {
     display: grid;
@@ -25,7 +62,7 @@ header {
     background: black;
 }
 .box {
-    height: 500px;
+    height: 350px;
     margin: 5px;
     width: 99%;
 }
@@ -34,46 +71,34 @@ header {
 	border-bottom: 1px solid rgba(199, 195, 195, 0.377);
 	border-top: 1px solid;
 }
-
 .questions {
-    border: 2px dashed gray;
-    height: 10em;
+    font: "Raleway", sans-serif;
+    /* border: 2px dashed gray; */
+    height: 2em;
     display: flex;
     align-items: center;
     justify-content: center
 }
-#start {
+.qP {
+    font-size: 40px;
+    font-family: "Raleway", sans-serif;
+}
+#customizeGame {
+    font: "Raleway", sans-serif;
     position: absolute;
     top: 8px;
     left: 16px;
     font-size: 18px;
-    height: 40px;
-    width: 90px;
+    height: 60px;
+    width: 110px;
     border-radius: 999px;
 }
-#start:active {
-    animation: burn 1000ms ease-out forwards;
+#customizeGame:hover {
+    background: rgba(214, 212, 212, 0.253);
+	border-bottom: 1px solid rgba(199, 195, 195, 0.377);
+	border-top: 1px solid;
 }
-#start::before {
-    content: '';
-    position: absolute;
-    left: 40px;
-    width: 100px;
-    height: 40px;
-    border-radius: 100%;
-    animation: flare 1000ms ease-out forwards;
-  }
-
-#start::after {
-    content: '';
-    position: absolute;
-    right: 40px;
-    width: 100px;
-    height: 40px;
-    border-radius: 100%;
-    animation: flare 1000ms ease-out forwards;
-}
-
+/* 
 
 
 @keyframes flare {
@@ -102,4 +127,4 @@ header {
     0 -30px 30px 10px rgba(230, 30, 10, 0),
     0 -20px 10px 0 rgba(255, 255, 10, 0);
 }
-}
+} */
