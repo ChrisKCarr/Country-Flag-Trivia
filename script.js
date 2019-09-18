@@ -8,6 +8,10 @@ const flagButtonPatrent = document.querySelector(".choices");
 const modal = document.querySelector('.modal');
 const customizeButton = document.querySelector('#customizeGame');
 const close = document.getElementsByClassName("close")[0];
+const numOfPlayersSubmit = document.querySelector(".numOfPlayersSubmit");
+const turnLimitButton = document.querySelector(".turnLimit");
+const turnCountHTML = document.querySelector(".turnCount");
+var setTurns = 10;
 //----------------------------------------------------//----------------------------------------------------//----------------------------------------------------//----------------------------------------------------
 fetch('https://restcountries.eu/rest/v2/all')
     .then(res => res.json())
@@ -81,6 +85,7 @@ function shuffle(array) {
 //Score -- adds 1 point each correct answer - sum starts at 0 - grabs element for score - changes innerText to display current score number -
 function addScore() {
     score += 1;
+
     const scoreEle = document.querySelector(".score");
     scoreEle.innerText = `score: ${score}`;
     return scoreEle;
@@ -88,7 +93,8 @@ function addScore() {
 //tracks the games amount of turns -- starts at 0 -- stops game at 10;
 function logTurn() {
     turn++;
-    if(turn === 10) {
+    turnCountHTML.innerText = `turn: ${turn} /${setTurns}`
+    if(turn == setTurns) {
         stopGame();
     } else {
         clearBoard();
@@ -119,7 +125,6 @@ flagButtonPatrent.addEventListener('click', function(event) {
     event.preventDefault();
 
     if(event.target.name == 'correct') {
-        console.log('correct');
         addScore();
         logTurn();
     } else {
@@ -139,4 +144,13 @@ window.onclick = function(event) {
     if (event.target == modal) {
       modal.style.display = "none";
     }
+}
+numOfPlayersSubmit.onclick = function(event) {
+    event.preventDefault();
+}
+turnLimitButton.onclick = function(event) {
+    event.preventDefault();
+    setTurns = document.getElementById("turns").value;
+    alert(`The turns per round have been set to ${setTurns}`);
+    console.log('Turn amount: ',setTurns);
 }

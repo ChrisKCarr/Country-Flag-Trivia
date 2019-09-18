@@ -12,10 +12,17 @@ header {
 } */
 .scorebox {
     position: absolute;
-    font:500 40px/2 "Raleway", sans-serif;
-    top: 8px;
-    right: 16px;
+    font:500 25px/2 "Raleway", sans-serif;
+    top: 24px;
+    bottom: 5px;
+    right: 65px;
     /* font-size: 18px; */
+}
+.turnContainer {
+    position: absolute;
+    font:25px/2 "Raleway", sans-serif;
+    top: 0px;
+    right: 16px;
 }
 .modal {
     display: none; /* Hidden by default */

@@ -21,7 +21,14 @@
         <div class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <p>Customization options coming soon..</p>
+                <form>
+                    Pick the number of players (between 1 and 10): <input type="number" name="players" min="1" max="10">
+                    <input class="numOfPlayersSubmit" type="submit">
+                </form>
+                <form>
+                    How many turns will there be per round? (max allowed is 100): <input id="turns" type="number" name="numberOfTurns" min="3"max="100">
+                    <input class="turnLimit" type="submit">
+                </form>
             </div>
         </div>
         <h1>Flag Trivia</h1>
@@ -29,6 +36,9 @@
             <div class="score">score: 0</div>
         </div>
     </header>
+    <div class="turnContainer">
+        <div class="turnCount">turn: 1 / 10</div>
+    </div>
     <div class="questions">
             <p class="qP">Which is the flag of X country.</p>
     </div>
