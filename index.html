@@ -22,8 +22,11 @@
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <form>
-                    Pick the number of players (between 1 and 10): <input type="number" name="players" min="1" max="10">
+                    Pick the number of players (between 1 and 10): <input type="number" id="playersNum" min="1" max="10">
                     <input class="numOfPlayersSubmit" type="submit">
+                    <!-- <div class="playerNameModal">
+                        <span class="closePlayerModal">&times;</span>
+                    </div> -->
                 </form>
                 <form>
                     How many turns will there be per round? (max allowed is 100): <input id="turns" type="number" name="numberOfTurns" min="3"max="100">
@@ -31,6 +34,7 @@
                 </form>
             </div>
         </div>
+        <ul class="playersBox"></ul>
         <h1>Flag Trivia</h1>
         <div class="scorebox">
             <div class="score">score: 0</div>

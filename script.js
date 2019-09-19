@@ -8,10 +8,14 @@ const flagButtonPatrent = document.querySelector(".choices");
 const modal = document.querySelector('.modal');
 const customizeButton = document.querySelector('#customizeGame');
 const close = document.getElementsByClassName("close")[0];
-const numOfPlayersSubmit = document.querySelector(".numOfPlayersSubmit");
+const numOfPlayersSubmit = document.querySelector(".numOfPlayersSubmit"); 
 const turnLimitButton = document.querySelector(".turnLimit");
 const turnCountHTML = document.querySelector(".turnCount");
+// const playerNameModal = document.querySelector(".playerNameModal");
+const playersList = document.querySelector(".playersBox");
 var setTurns = 10;
+//Player Object Array
+let players = [];
 //----------------------------------------------------//----------------------------------------------------//----------------------------------------------------//----------------------------------------------------
 fetch('https://restcountries.eu/rest/v2/all')
     .then(res => res.json())
@@ -120,6 +124,26 @@ function clearBoard() {
     }
     pickRandomCountries();
 };
+//Modual functions
+function createPlayers(num) {
+    
+    for (let index = 1; index <= num; index++) {
+        let playername = prompt(`Please enter player: ${index} name`);
+        players.push({name: playername, playerscore: 0});
+        displayPlayer(index);
+    }
+    // console.log(players) -- Works, logs players.
+};
+//Player Functions--
+//append children to the players list to be displayed - each list element will consist of inner Text being the players name and score.
+function displayPlayer(index) {
+    let playerEle = document.createElement("li");
+    console.log(players);
+    let plyname = players[index].name;
+    let plyscore = players[index].playerscore;
+    playerEle.innerText = `${plyname}: ${plyscore}`;
+    playersList.appendChild(playerEle);
+}
 //EVENTS//----------------------------------------------------//----------------------------------------------------//----------------------------------------------------//----------------------------------------------------
 flagButtonPatrent.addEventListener('click', function(event) {
     event.preventDefault();
@@ -147,10 +171,14 @@ window.onclick = function(event) {
 }
 numOfPlayersSubmit.onclick = function(event) {
     event.preventDefault();
+    setPlayerNumber = document.getElementById("playersNum").value;
+    console.log(`The number of players has been set to ${setPlayerNumber}`);
+    createPlayers(setPlayerNumber);
 }
 turnLimitButton.onclick = function(event) {
     event.preventDefault();
     setTurns = document.getElementById("turns").value;
     alert(`The turns per round have been set to ${setTurns}`);
+    turnCountHTML.innerText = `turn: ${turn} /${setTurns}`
     console.log('Turn amount: ',setTurns);
 }
