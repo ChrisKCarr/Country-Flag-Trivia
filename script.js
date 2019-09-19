@@ -98,7 +98,7 @@ function addScore() {
 function logTurn() {
     turn++;
     turnCountHTML.innerText = `turn: ${turn} /${setTurns}`
-    if(turn == setTurns) {
+    if(turn >= setTurns) {
         stopGame();
     } else {
         clearBoard();
@@ -106,9 +106,19 @@ function logTurn() {
 };
 //Once game is at 10 turns return alert of users score -- 
 function stopGame() {
-    // flagButtonPatrent.removeEventListener('click', function(evt) {console.log('over')});
     alert(`Your final score is ${score}`);
-    return location.reload();
+    console.log(players);
+    if(players.length > 0) {
+        players[0].gone = true;
+        players[0].playerscore = score;
+        updatePlayerText(players);
+        playerCycle(players);
+
+    } else {
+        return location.reload();
+    }
+    // flagButtonPatrent.removeEventListener('click', function(evt) {console.log('over')});
+    // return location.reload();
 }
 //after each turn, board is cleared and setFlag is rerun -- first for loop through flag holding elements, -- if/else to check for element with name = correct, clear it. -- clear background for all elements. -- run setFlag function again after for loop.
 function clearBoard() {
@@ -127,7 +137,7 @@ function clearBoard() {
 //Modual functions
 function createPlayers(num) {
     
-    for (let index = 1; index <= num; index++) {
+    for (let index = 0; index < num; index++) {
         let playername = prompt(`Please enter player: ${index} name`);
         players.push({name: playername, playerscore: 0});
         displayPlayer(index);
@@ -136,14 +146,65 @@ function createPlayers(num) {
 };
 //Player Functions--
 //append children to the players list to be displayed - each list element will consist of inner Text being the players name and score.
-function displayPlayer(index) {
+function displayPlayer(index) { 
     let playerEle = document.createElement("li");
-    console.log(players);
+    // console.log(players);
     let plyname = players[index].name;
     let plyscore = players[index].playerscore;
+    playerEle.className = `${index}`;
     playerEle.innerText = `${plyname}: ${plyscore}`;
     playersList.appendChild(playerEle);
+};
+//Updates innerText of Player Element in DOM
+function updatePlayerText(players) {
+    for (let index = 0; index < players.length; index++) {
+        let selectedPlayer = document.getElementsByClassName(index);
+        console.log(selectedPlayer);
+        let plyname = players[index].name;
+        let plyscore = players[index].playerscore;
+        selectedPlayer[0].innerText = `${plyname}: ${plyscore}`;
+    };
+};
+//cycle through each player -- 
+function playerCycle(players) {
+    let shidtedPlayer = players.shift();
+    players.push(shidtedPlayer);
+    updatePlayerText(players);
+    let numberOfPlayersGone = 0;
+    players.forEach(player => {
+        if(player.gone == true) {
+            numberOfPlayersGone++;
+        };
+        if(numberOfPlayersGone === players.length) {
+            selectWinner(players);
+        }
+    });
+    score = 0;
+    resetScore();
+    turn = 0;
+    clearBoard();
 }
+//This will reseat the score of the game to get ready for the next player;
+function resetScore() {
+    const scoreEle = document.querySelector(".score");
+    scoreEle.innerText = `score: ${score}`;
+    return scoreEle;
+};
+//This will sort the player array of objects and return the players name who had the highest score, if there is a draw - return the name of the players who had the same score.
+function selectWinner(players) {
+    const sortedList = players.sort(function(a,b) {
+        return b.playerscore-a.playerscore;
+    })
+    if(sortedList[0].playerscore === sortedList[1].playerscore) {
+        alert(`Game Finished, ${sortedList[0].name} & ${sortedList[1].name} had a draw!
+        The game will now restart.`);
+        location.reload();
+    } else {
+        alert(`Game Finished, ${sortedList[0].name} won!
+        The game will now restart.`);
+        location.reload();
+    }
+};
 //EVENTS//----------------------------------------------------//----------------------------------------------------//----------------------------------------------------//----------------------------------------------------
 flagButtonPatrent.addEventListener('click', function(event) {
     event.preventDefault();
@@ -174,6 +235,7 @@ numOfPlayersSubmit.onclick = function(event) {
     setPlayerNumber = document.getElementById("playersNum").value;
     console.log(`The number of players has been set to ${setPlayerNumber}`);
     createPlayers(setPlayerNumber);
+    // playerCycle(players);
 }
 turnLimitButton.onclick = function(event) {
     event.preventDefault();

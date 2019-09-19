@@ -22,7 +22,7 @@ header {
     position: absolute;
     font:25px/2 "Raleway", sans-serif;
     top: 0px;
-    right: 16px;
+    right: 39px;
 }
 .modal {
     display: none; /* Hidden by default */
@@ -60,6 +60,7 @@ header {
     cursor: pointer;
 }
 .playersBox {
+    list-style-type: none;
     position: absolute;
     /* background: black; */
     left: 140px;
