@@ -104,6 +104,7 @@ header {
     height: 350px;
     margin: 5px;
     width: 99%;
+    background: rgb(209, 209, 209);
 }
 .box:hover {
 	background: rgba(214, 212, 212, 0.253);

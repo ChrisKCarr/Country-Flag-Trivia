@@ -57,7 +57,7 @@ function setFlags(countryChoices, targetCountry) {
     // console.log(shuffledPicks); -- Works
     for (let index = 0; index < shuffledPicks.length; index++) {
         if(shuffledPicks[index] === targetCountry) {
-            console.log('corrext country: ', targetCountry, ' at index: '+index);
+            console.log('correct country: ', targetCountry, ' at index: '+index);
             button[index].style.backgroundImage = `url(${shuffledPicks[index].flag})`;
             button[index].style.backgroundSize = '100% 100%';
             button[index].style.backgroundRepeat = `no-repeat`;
