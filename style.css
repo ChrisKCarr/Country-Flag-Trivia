@@ -1,6 +1,12 @@
+body {
+    background: lightgray; 
+    background: -webkit-linear-gradient(to right, #d3cce3, #e9e4f0); 
+    background: linear-gradient(to right, #d3cce3, #e9e4f0); 
+}
 header {
     display: inline;
     text-align: center;
+    font-family: 'Raleway', Helvetica, Arial, sans-serif;
 }
 
 /* #map {
@@ -63,9 +69,9 @@ header {
     list-style-type: none;
     position: absolute;
     /* background: black; */
-    left: 140px;
-    top: 0px;
-    width: 300px;
+    left: 90px;
+    top: -10px;
+    width: 90px;
     height: 55px;
 }
 /* .playerNameModal {
@@ -93,6 +99,13 @@ header {
     text-decoration: none;
     cursor: pointer;
 } */
+.wrong {
+    color: red;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    /* font-size: 2em; */
+    font-weight: bold;
+    font-size: xx-large;
+}
 .choices {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -105,7 +118,7 @@ header {
     height: 350px;
     margin: 5px;
     width: 99%;
-    background: rgb(209, 209, 209);
+    background: lightgray;
 }
 .box:hover {
 	background: rgba(214, 212, 212, 0.253);

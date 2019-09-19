@@ -40,11 +40,22 @@ function pickRandomCountries() {
     let targetCountry = countriesList[Math.floor(Math.random()*countriesList.length)];
     countryChoices.push(targetCountry);
     for(let i=0; i<3;i++) {countryChoices.push(countriesList[Math.floor(Math.random()*countriesList.length)])};
+    doublicateCheck(countryChoices);
     // console.log(countryChoices);  -- Works, answer is always at 0 index, 1-3 index are random countrys.
     changeQuestion(targetCountry);
     setFlags(countryChoices, targetCountry);
-    
 }
+//Check if the countryChoices array has doublicates
+function doublicateCheck(a) {
+    let checked = new Set(a);
+    const backToArray = [...checked];
+    if(backToArray.length > 4) {
+        console.log("doublicate removed");
+        pickRandomCountries();
+    } else {
+        console.log("...na...")
+    };
+};
 //Grab question element from doc -- change innerText to match the random countries name. -- return the element.
 function changeQuestion(pickedCountry) {
     const questionEle = document.querySelector('.qP');
@@ -57,13 +68,13 @@ function setFlags(countryChoices, targetCountry) {
     // console.log(shuffledPicks); -- Works
     for (let index = 0; index < shuffledPicks.length; index++) {
         if(shuffledPicks[index] === targetCountry) {
-            console.log('correct country: ', targetCountry, ' at index: '+index);
+            // console.log('correct country: ', targetCountry, ' at index: '+index);
             button[index].style.backgroundImage = `url(${shuffledPicks[index].flag})`;
             button[index].style.backgroundSize = '100% 100%';
             button[index].style.backgroundRepeat = `no-repeat`;
             button[index].name = 'correct';
         } else {
-            console.log(button[index], shuffledPicks[index].flag);
+            // console.log(button[index], shuffledPicks[index].flag);
             button[index].style.backgroundImage = `url(${shuffledPicks[index].flag})`;
             button[index].style.backgroundSize = '100% 100%';
             button[index].style.backgroundRepeat = `no-repeat`;
@@ -205,6 +216,19 @@ function selectWinner(players) {
         location.reload();
     }
 };
+
+//function to display a red X over the flag chosen if it was the wrong one.
+// function WRONG(box) {
+//     let wrongX = document.createElement("p");
+//     wrongX.className = "wrong";
+//     wrongX.innerText = 'X';
+//     return box.appendChild(wrongX);
+// }
+//clears the red X elements
+// function clearX() {
+//     let child = flagButtonPatrent.lastChild;
+//     flagButtonPatrent.removeChild(child);
+// }
 //EVENTS//----------------------------------------------------//----------------------------------------------------//----------------------------------------------------//----------------------------------------------------
 flagButtonPatrent.addEventListener('click', function(event) {
     event.preventDefault();
@@ -213,7 +237,9 @@ flagButtonPatrent.addEventListener('click', function(event) {
         addScore();
         logTurn();
     } else {
-        alert('WRONG');
+        alert('Wrong!');
+        // WRONG(flagButtonPatrent);
+        // clearX(); 
         logTurn();
     }
 })
