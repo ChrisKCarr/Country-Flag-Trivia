@@ -2,7 +2,7 @@
 
 A simple flag trivia game where 1 or multiple players can test themselves to see how many country flags they know. A custom amount of turns can be set (between 3 to 100). The game was created using HTML, CSS, and JavaScript.
 
-![Game Overview](/Users/krzysztof/Desktop/Screen Shot 2019-09-20 at 12.22.37.png)
+![Game Overview](https://github.com/ChrisKCarr/Country-Flag-Trivia/blob/master/Images/Game%20Overview.png)
 
 
 ### Installing
@@ -26,8 +26,10 @@ The game was created by using the REST countries API in order to create an array
 
 The game logic is sound but does contain a few bugs I would like to clean up eventuallay, those being:
 * douplicate countries still appear - a function to filter douplicate countries from the ```countryChoices``` array has been started but as of yet still needs to be fixed.
+![issue](https://github.com/ChrisKCarr/Country-Flag-Trivia/blob/master/Images/Douplicate%20Flags%20Issue.png)
 * When playing with multiple players, after each round, the turns counter does not rest back to 1 until that player has already taken their first turn. Example: The player 1 ends with turns 3/3, player 2 makes their first pick with the turn counter displaying 3/3, only after they have made their first choice does the turn counter reseat to 2/3.
 * In the Custom Games button - no logic has yet been made to prevent the infinite addition of players, which spills out over the DOM. The input element only prevents a number between 2-4 per submission but allows for an infinte amount of submissions
+![issue](https://github.com/ChrisKCarr/Country-Flag-Trivia/blob/master/Images/Additional%20Players%20DOM%20Issue.png)
 
 ## Future Plans
 
