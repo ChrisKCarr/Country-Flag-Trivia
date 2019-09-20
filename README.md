@@ -2,7 +2,7 @@
 
 A simple flag trivia game where 1 or multiple players can test themselves to see how many country flags they know. A custom amount of turns can be set (between 3 to 100). The game was created using HTML, CSS, and JavaScript.
 
-[image]
+![Game Overview](/Users/krzysztof/Desktop/Screen Shot 2019-09-20 at 12.22.37.png)
 
 
 ### Installing
@@ -25,15 +25,15 @@ The game was created by using the REST countries API in order to create an array
 ## Unsolved Problems
 
 The game logic is sound but does contain a few bugs I would like to clean up eventuallay, those being:
-* [douplicate countries still appear - a function to filter douplicate countries from the ```countryChoices``` array has been started but as of yet still needs to be fixed.]
-* [When playing with multiple players, after each round, the turns counter does not rest back to 1 until that player has already taken their first turn. Example: The player 1 ends with turns 3/3, player 2 makes their first pick with the turn counter displaying 3/3, only after they have made their first choice does the turn counter reseat to 2/3.]
-* [In the Custom Games button - no logic has yet been made to prevent the infinite addition of players, which spills out over the DOM. The input element only prevents a number between 2-4 per submission but allows for an infinte amount of submissions]
+* douplicate countries still appear - a function to filter douplicate countries from the ```countryChoices``` array has been started but as of yet still needs to be fixed.
+* When playing with multiple players, after each round, the turns counter does not rest back to 1 until that player has already taken their first turn. Example: The player 1 ends with turns 3/3, player 2 makes their first pick with the turn counter displaying 3/3, only after they have made their first choice does the turn counter reseat to 2/3.
+* In the Custom Games button - no logic has yet been made to prevent the infinite addition of players, which spills out over the DOM. The input element only prevents a number between 2-4 per submission but allows for an infinte amount of submissions
 
 ## Future Plans
 
-* [The replacement of a simple ```alert()``` for wrong picks, replaced with either a big red X over the chosen button element OR idealy, a modal which displays the correct flag the user should have choosen. This popup could even be an option feature the user could turn on/off within the "Custom Game" button.]
-* [Within the "Custom Game" button, make a possibility to play the game with the API filtering the countries picked by spesific regions.]
-* [A timed game mode, where there is x amount of time counting down and the user has to pick the correct flags as fast as possible, seeing how far they can go. One wrong answer and the game ends, or if the user has made no wrong choices, the game would end once the timer reaches 0.]
+* The replacement of a simple ```alert()``` for wrong picks, replaced with either a big red X over the chosen button element OR idealy, a modal which displays the correct flag the user should have choosen. This popup could even be an option feature the user could turn on/off within the "Custom Game" button.
+* Within the "Custom Game" button, make a possibility to play the game with the API filtering the countries picked by spesific regions.
+* A timed game mode, where there is x amount of time counting down and the user has to pick the correct flags as fast as possible, seeing how far they can go. One wrong answer and the game ends, or if the user has made no wrong choices, the game would end once the timer reaches 0.
 
 ## Authors
 
