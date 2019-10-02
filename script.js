@@ -28,6 +28,7 @@ fetch('https://restcountries.eu/rest/v2/all')
     .catch(err => console.log("something went wrong ;/", err));
 //----------------------------------------------------//----------------------------------------------------//----------------------------------------------------//----------------------------------------------------
 //Filters rest countries API by name and flag url. -- Take array of countries -- forEach country, take the country name and flag and place into an object array -- return the array containing just the name and flag of each country. 
+// For legibility purposes I wouldn't use res here. 
 function filterCountryArray(res) {
     res.forEach(country => {
         countriesList.push({name: country.name, flag: country.flag});
@@ -46,6 +47,13 @@ function pickRandomCountries() {
     setFlags(countryChoices, targetCountry);
 }
 //Check if the countryChoices array has doublicates
+// So it seems you pull only 4 flags from your pool of choices called countryChoices
+// if there's a random it calls pickRandomCountries and pulls again only 4 flags which is where the douplicates could happen
+// my first thought was to pull more flags into the countryChoices and then check if the first 4 are douplicates(in the douplicatecheck func), if so then, change indexies with the one that is a duplicate.
+// this could be tricky IF theres another duplicate AND it's swapped with the original duplicate. 
+//
+// OR the randomizer on line 42 and make it its own function, one that creates an array of 4 random numbers, and checks that the array has n duplicates, and also checks the number hasn't been played already by the user. then pushes into country choices, changeQuestion and setFlags
+
 function doublicateCheck(a) {
     let checked = new Set(a);
     const backToArray = [...checked];
@@ -81,6 +89,8 @@ function setFlags(countryChoices, targetCountry) {
         }
     }  
 }
+// https://hacks.mozilla.org/2015/05/es6-in-depth-destructuring/
+// https://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array
 //Fisher-Yates Shuffle
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -96,6 +106,20 @@ function shuffle(array) {
     }
     return array;
 }
+// ES6 now allows for array deconstruction, which means you can rearrange an array using it's indexes to rearrange the items, which is what you're doing here. The function I'm share is ALMOST the same it just looks at cleaner with the deconstruction method. 
+// you can also create an array.prototype.random like Cooper did which can be very useful
+// but it would look like this: 
+// /**
+//  * Shuffles array in place. ES6 version
+//  * @param {Array} a items An array containing the items.
+//  */
+// function shuffle(a) {
+//     for (let i = a.length - 1; i > 0; i--) {
+//         const j = Math.floor(Math.random() * (i + 1));
+//         [a[i], a[j]] = [a[j], a[i]]; 
+//     }
+//     return a;
+// }
 
 //Score -- adds 1 point each correct answer - sum starts at 0 - grabs element for score - changes innerText to display current score number -
 function addScore() {
@@ -114,6 +138,7 @@ function logTurn() {
     } else {
         clearBoard();
     }
+    // ternary operator 
 };
 //Once game is at 10 turns return alert of users score -- 
 function stopGame() {
@@ -179,7 +204,7 @@ function updatePlayerText(players) {
 //cycle through each player -- 
 function playerCycle(players) {
     let shidtedPlayer = players.shift();
-    players.push(shidtedPlayer);
+    players.push(shidtedPlayer); //lol
     updatePlayerText(players);
     let numberOfPlayersGone = 0;
     players.forEach(player => {
@@ -217,6 +242,9 @@ function selectWinner(players) {
     }
 };
 
+// I would move code that you're not using into a different branch 
+// keep your production branch clean
+
 //function to display a red X over the flag chosen if it was the wrong one.
 // function WRONG(box) {
 //     let wrongX = document.createElement("p");
@@ -243,6 +271,7 @@ flagButtonPatrent.addEventListener('click', function(event) {
         logTurn();
     }
 })
+// I would make all of these ES6 IFFEs
 //Modual Events
 customizeButton.onclick = function() {
     modal.style.display = "block";
